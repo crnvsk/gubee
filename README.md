@@ -12,4 +12,4 @@ O objetivo deste repositório é consolidar os conhecimentos adquiridos durante 
 
 ## Notion
 
-https://www.notion.so/Gubee-1c13a1b532b8807180d5fb6511c7572b?pvs=4
+https://grove-brian-6c9.notion.site/Gubee-1c13a1b532b8807180d5fb6511c7572b?pvs=4
