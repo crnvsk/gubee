@@ -1,3 +1,5 @@
+package LambdaFunction;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,9 +9,7 @@ public class FiltersWithLambda {
 
         // Filtrando nomes que começam com "B" e imprimindo-os
         nomes.stream()
-             .filter(nome -> nome.startsWith("B"))
-             .forEach(System.out::println);
+                .filter(nome -> nome.startsWith("B"))
+                .forEach(System.out::println);
     }
 }
-
-

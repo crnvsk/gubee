@@ -1,3 +1,5 @@
+package LambdaFunction;
+
 public class ThreadInnerClass {
     public static void main(String[] args) {
         Runnable r = new Runnable() {
@@ -8,4 +10,3 @@ public class ThreadInnerClass {
         new Thread(r).start();
     }
 }
-

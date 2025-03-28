@@ -1,6 +1,8 @@
+package LambdaFunction;
+
 import java.util.*;
 
-public class LambdaWithComparator{
+public class LambdaWithComparator {
     public static void main(String[] args) {
         List<String> lista = Arrays.asList("banana", "maçã", "abacaxi", "uva");
 
@@ -10,4 +12,3 @@ public class LambdaWithComparator{
         System.out.println(lista);
     }
 }
-

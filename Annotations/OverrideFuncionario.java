@@ -22,8 +22,7 @@ public class OverrideFuncionario {
         int result = 1;
         long temp;
         temp = Double.doubleToLongBits(salario);
-        result = prime * result + (int)
-  (temp ^ (temp >>> 32));
+        result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

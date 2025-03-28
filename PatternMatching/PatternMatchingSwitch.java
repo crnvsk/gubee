@@ -1,3 +1,5 @@
+package PatternMatching;
+
 public class PatternMatchingSwitch {
     public static void main(String[] args) {
         Object obj = 42;

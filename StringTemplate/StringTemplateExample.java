@@ -1,3 +1,5 @@
+package StringTemplate;
+
 import static java.lang.StringTemplate.STR;
 
 public class StringTemplateExample {

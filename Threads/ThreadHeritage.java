@@ -21,4 +21,3 @@ public class ThreadHeritage {
         System.out.println("Thread principal finalizada.");
     }
 }
-

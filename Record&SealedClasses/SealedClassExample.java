@@ -1,4 +1,5 @@
-sealed class Forma permits Circulo, Retangulo { }
+sealed class Forma permits Circulo, Retangulo {
+}
 
 final class Circulo extends Forma {
     double raio;

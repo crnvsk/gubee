@@ -1,3 +1,5 @@
+package PatternMatching;
+
 public class PatternMatchingInstanceof {
     public static void main(String[] args) {
         Object obj = "Olá, mundo!";
