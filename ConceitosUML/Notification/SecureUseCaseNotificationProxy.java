@@ -1,4 +1,4 @@
-package ConceitosUML;
+package ConceitosUML.Notification;
 
 public class SecureUseCaseNotificationProxy implements UseCaseNotification {
     private final UseCaseNotification target;

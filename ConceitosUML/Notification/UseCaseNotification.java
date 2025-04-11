@@ -1,4 +1,4 @@
-package ConceitosUML;
+package ConceitosUML.Notification;
 
 import java.util.Random;
 import java.util.UUID;

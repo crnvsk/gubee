@@ -1,4 +1,4 @@
-package ConceitosUML;
+package ConceitosUML.Notification;
 
 public abstract class UseCaseNotificationFactory {
     public abstract UseCaseNotification create(String userRole);

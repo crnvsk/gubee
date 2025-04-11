@@ -1,0 +1,15 @@
+2. Explique o que é um userprincipal e para que este é usado dentro de uma app java.
+    - Servlet, autenticação e segurança do java EE.
+
+Resposta:
+O UserPrincipal é uma interface em Java que representa o principal (ou entidade) autenticado em um sistema. Ele é usado principalmente em 
+aplicações Java EE para gerenciar autenticação e segurança. Um principal geralmente representa um usuário ou uma entidade que interage com o sistema.
+
+No contexto de Servlets e segurança em Java EE:
+    O UserPrincipal é obtido através do método HttpServletRequest.getUserPrincipal().
+    Ele contém informações sobre o usuário autenticado, como o nome de usuário.
+    É usado para verificar permissões e autorizações, como request.isUserInRole("admin").
+
+Uso típico:
+    Em sistemas de autenticação, o UserPrincipal é usado para identificar o usuário atual e verificar se ele tem acesso a determinados recursos ou funcionalidades.
+    Ele é integrado com mecanismos de segurança, como JAAS (Java Authentication and Authorization Service) ou frameworks de segurança como Spring Security.
