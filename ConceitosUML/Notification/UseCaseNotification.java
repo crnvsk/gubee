@@ -17,6 +17,7 @@ public interface UseCaseNotification {
     class PoolingUseCaseNotification implements UseCaseNotification {
 
         @Override
+        @Transaction
         public void notifyEveryHour(String customerId, PresenterNotification presenter) {
             System.out.println("processando regra de negocio");
             presenter.notification(
@@ -24,49 +25,26 @@ public interface UseCaseNotification {
         }
     }
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         ScheduledExecutorService controller = Executors.newSingleThreadScheduledExecutor();
 
-        // Criação do UseCaseNotification via Abstract Factory
         UseCaseNotificationFactory factory = UseCaseNotificationFactory.getFactory();
         var notificationUseCase = factory.create("admin");
 
-        PresenterNotification emailPresenter = (message) -> System.out.printf("email %s", message);
-        PresenterNotification whatsAppPresenter = (message) -> System.out.printf("whatApp %s", message);
-        PresenterNotification smsPresenter = (message) -> System.out.printf("sms %s", message);
+        PresenterNotification emailPresenter = (message) -> System.out.printf("email %s%n", message);
+        PresenterNotification whatsAppPresenter = (message) -> System.out.printf("whatApp %s%n", message);
+        PresenterNotification smsPresenter = (message) -> System.out.printf("sms %s%n", message);
         PresenterNotification[] notifications = { emailPresenter, whatsAppPresenter, smsPresenter };
+
         controller.scheduleAtFixedRate(() -> {
+            System.out.println("Executando tarefa agendada...");
             var nextPos = Math.abs(new Random().nextInt()) % 3;
-            notificationUseCase.notifyEveryHour(UUID.randomUUID().toString(), notifications[nextPos]);
-            System.out.println();
+            TransactionInterceptor.executeWithTransaction(
+                    notificationUseCase,
+                    "notifyEveryHour",
+                    UUID.randomUUID().toString(),
+                    (PresenterNotification) notifications[nextPos]);
+            System.out.println("Tarefa concluída.");
         }, 1, 1, TimeUnit.SECONDS);
     }
-
-    // Criação do UseCaseNotification via Proxy
-    /*
-     * static void main(String[] args) {
-     * ScheduledExecutorService controller =
-     * Executors.newSingleThreadScheduledExecutor();
-     * var originalNotificationUseCase = new PoolingUseCaseNotification();
-     * 
-     * // Criação do proxy com a role "admin"
-     * var notificationUseCase =
-     * SecurityProxy.createProxy(originalNotificationUseCase, "admin");
-     * 
-     * PresenterNotification emailPresenter = (message) -> System.out.printf("email
-     * %s", message);
-     * PresenterNotification whatsAppPresenter = (message) ->
-     * System.out.printf("whatApp %s", message);
-     * PresenterNotification smsPresenter = (message) -> System.out.printf("sms %s",
-     * message);
-     * PresenterNotification[] notifications = { emailPresenter, whatsAppPresenter,
-     * smsPresenter };
-     * controller.scheduleAtFixedRate(() -> {
-     * var nextPos = Math.abs(new Random().nextInt()) % 3;
-     * notificationUseCase.notifyEveryHour(UUID.randomUUID().toString(),
-     * notifications[nextPos]);
-     * System.out.println();
-     * }, 1, 1, TimeUnit.SECONDS);
-     * }
-     */
 }

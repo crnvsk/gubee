@@ -11,7 +11,14 @@ public abstract class UseCaseNotificationFactory {
         @Override
         public UseCaseNotification create(String userRole) {
             UseCaseNotification original = new UseCaseNotification.PoolingUseCaseNotification();
-            return new SecureUseCaseNotificationProxy(original, userRole);
+
+            // Alternância entre Proxy via OO e Proxy dinâmico
+            boolean useDynamicProxy = false;
+            if (useDynamicProxy) {
+                return SecurityProxy.createProxy(original, userRole); // Proxy dinâmico
+            } else {
+                return new SecureUseCaseNotificationProxy(original, userRole); // Proxy via OO
+            }
         }
     }
 }
