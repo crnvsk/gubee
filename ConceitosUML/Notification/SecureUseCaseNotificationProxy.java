@@ -12,9 +12,9 @@ public class SecureUseCaseNotificationProxy implements UseCaseNotification {
     @Override
     public void notifyEveryHour(String customerId, PresenterNotification presenter) {
         if (!"admin".equals(userRole)) {
-            throw new SecurityException("Access denied: User does not have the required role.");
+            throw new SecurityException("Acesso negado: Usuario nao possui cargo necessario.");
         }
-        System.out.println("Access granted for role: " + userRole);
+        System.out.println("Acesso garantido para cargo: " + userRole);
         target.notifyEveryHour(customerId, presenter);
     }
 }
