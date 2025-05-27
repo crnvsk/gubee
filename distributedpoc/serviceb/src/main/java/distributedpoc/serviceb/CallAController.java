@@ -1,6 +1,8 @@
 package distributedpoc.serviceb;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,7 @@ public class CallAController {
 
     @GetMapping("/call-a")
     @CircuitBreaker(name = "serviceA", fallbackMethod = "fallbackCallA")
+    @Retry(name = "serviceA")
     public String callA() {
         String response = restTemplate.getForObject("http://localhost:8081/hello", String.class);
         return "Service B recebeu: " + response;
